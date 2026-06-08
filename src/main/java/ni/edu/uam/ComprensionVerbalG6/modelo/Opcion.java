@@ -1,5 +1,7 @@
 package ni.edu.uam.ComprensionVerbalG6.modelo;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.openxava.annotations.NoCreate;
 import org.openxava.annotations.NoModify;
 import org.openxava.annotations.TextArea;
@@ -8,7 +10,8 @@ import javax.persistence.*;
 
 import org.openxava.annotations.*;
 
-
+@Getter
+@Setter
 @Entity
 @Table(name = "opcion")
 public class Opcion {
@@ -33,19 +36,4 @@ public class Opcion {
     @NoCreate @NoModify @NoSearch
     private Pregunta pregunta;
 
-    // Getters y Setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
-
-    public String getLetra() { return letra; }
-    public void setLetra(String l) { this.letra = l; }
-
-    public String getTexto() { return texto; }
-    public void setTexto(String t) { this.texto = t; }
-
-    public boolean isEsCorrecta() { return esCorrecta; }
-    public void setEsCorrecta(boolean e) { this.esCorrecta = e; }
-
-    public Pregunta getPregunta() { return pregunta; }
-    public void setPregunta(Pregunta p) { this.pregunta = p; }
 }

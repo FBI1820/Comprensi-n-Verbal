@@ -1,11 +1,14 @@
 package ni.edu.uam.ComprensionVerbalG6.modelo;
 
 
+import lombok.Getter;
+import lombok.Setter;
 import org.openxava.annotations.*;
 import javax.persistence.*;
 import java.util.*;
 
-
+@Getter
+@Setter
 @Entity
 @Table(name = "pregunta")
 @Tab(properties = "numero, textoPrincipal")
@@ -29,16 +32,5 @@ public class Pregunta {
     @EditOnly
     private List<Opcion> opciones = new ArrayList<>();
 
-    // Getters y Setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
 
-    public int getNumero() { return numero; }
-    public void setNumero(int numero) { this.numero = numero; }
-
-    public String getTextoPrincipal() { return textoPrincipal; }
-    public void setTextoPrincipal(String t) { this.textoPrincipal = t; }
-
-    public List<Opcion> getOpciones() { return opciones; }
-    public void setOpciones(List<Opcion> o) { this.opciones = o; }
 }

@@ -1,5 +1,7 @@
 package ni.edu.uam.ComprensionVerbalG6.modelo;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.openxava.annotations.DescriptionsList;
 import org.openxava.annotations.NoCreate;
 import org.openxava.annotations.NoModify;
@@ -11,7 +13,8 @@ import javax.persistence.ManyToOne;
 
 import org.openxava.annotations.*;
 import javax.persistence.*;
-
+@Getter
+@Setter
 @Entity
 @Table(name = "respuesta_sesion")
 public class RespuestaSesion {
@@ -36,16 +39,4 @@ public class RespuestaSesion {
     @DescriptionsList(descriptionProperties = "letra, texto")
     private Opcion opcionElegida;
 
-    // Getters y Setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
-
-    public SesionEvaluacion getSesion() { return sesion; }
-    public void setSesion(SesionEvaluacion s) { this.sesion = s; }
-
-    public Pregunta getPregunta() { return pregunta; }
-    public void setPregunta(Pregunta p) { this.pregunta = p; }
-
-    public Opcion getOpcionElegida() { return opcionElegida; }
-    public void setOpcionElegida(Opcion o) { this.opcionElegida = o; }
 }
