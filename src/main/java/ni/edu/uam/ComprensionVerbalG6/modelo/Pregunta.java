@@ -24,14 +24,14 @@ public class Pregunta {
     @LabelFormat(LabelFormatType.NORMAL)
     private String textoPrincipal;
 
-    @OneToMany(mappedBy = "pregunta", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @ListProperties("letra, texto, esCorrecta")
-    @EditOnly
-    private List<Opcion> opciones = new ArrayList<>();
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "test_id", nullable = false)
+    @DescriptionsList(descriptionProperties = "tipoTest") // Crea un menú desplegable en OpenXava
+    private Test test;
 
-    // Getters y Setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+
+    public Test getTest() { return test; }
+    public void setTest(Test test) { this.test = test; }
 
     public int getNumero() { return numero; }
     public void setNumero(int numero) { this.numero = numero; }
