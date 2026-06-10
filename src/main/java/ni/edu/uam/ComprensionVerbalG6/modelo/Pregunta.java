@@ -1,11 +1,14 @@
 package ni.edu.uam.ComprensionVerbalG6.modelo;
 
 
+import lombok.Getter;
+import lombok.Setter;
 import org.openxava.annotations.*;
 import javax.persistence.*;
 import java.util.*;
 
-
+@Getter
+@Setter
 @Entity
 @Table(name = "pregunta")
 @Tab(properties = "numero, textoPrincipal")
@@ -24,21 +27,10 @@ public class Pregunta {
     @LabelFormat(LabelFormatType.NORMAL)
     private String textoPrincipal;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "test_id", nullable = false)
-    @DescriptionsList(descriptionProperties = "tipoTest") // Crea un menú desplegable en OpenXava
-    private Test test;
+    @OneToMany(mappedBy = "pregunta", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ListProperties("letra, texto, esCorrecta")
+    @EditOnly
+    private List<Opcion> opciones = new ArrayList<>();
 
 
-    public Test getTest() { return test; }
-    public void setTest(Test test) { this.test = test; }
-
-    public int getNumero() { return numero; }
-    public void setNumero(int numero) { this.numero = numero; }
-
-    public String getTextoPrincipal() { return textoPrincipal; }
-    public void setTextoPrincipal(String t) { this.textoPrincipal = t; }
-
-    public List<Opcion> getOpciones() { return opciones; }
-    public void setOpciones(List<Opcion> o) { this.opciones = o; }
 }
