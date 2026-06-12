@@ -37,3 +37,6 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+# Ignorar credenciales de base de datos local
+src/main/webapp/META-INF/context.xml
