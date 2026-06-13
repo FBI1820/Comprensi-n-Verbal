@@ -21,6 +21,10 @@ public class Pregunta {
     @Column(name = "numero", nullable = false, unique = true)
     private int numero;
 
+    @ManyToOne
+    @JoinColumn(name="test_id")  // nombre de la columna en la tabla Pregunta
+    private Test test;
+
     @Column(name = "texto_principal", nullable = false, length = 600)
     @TextArea
     @DisplaySize(70)
