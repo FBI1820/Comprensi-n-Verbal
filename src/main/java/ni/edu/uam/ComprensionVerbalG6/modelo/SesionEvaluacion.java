@@ -9,6 +9,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import org.openxava.annotations.*;
+import org.openxava.calculators.CurrentDateCalculator;
+
 import java.util.*;
 @Getter
 @Setter
@@ -23,14 +25,16 @@ public class SesionEvaluacion {
 
     @Column(name = "nombre_evaluado", nullable = false, length = 200)
     private String nombreEvaluado;
+    //cambios en fecha de inicio para hacerlo automatico
 
     @Column(name = "fecha_inicio")
     @ReadOnly
-    private LocalDateTime fechaInicio;
+    private Date fechaInicio;
 
     @Column(name = "fecha_fin")
     @ReadOnly
-    private LocalDateTime fechaFin;
+    private Date fechaFin;
+
 
     @Column(name = "puntaje_total")
     @ReadOnly
@@ -40,4 +44,14 @@ public class SesionEvaluacion {
     @ListProperties("pregunta.numero, pregunta.textoPrincipal, opcionElegida.letra")
     private List<RespuestaSesion> respuestas = new ArrayList<>();
 
+    @PrePersist
+    public void asignarFechaInicio() {
+        this.fechaInicio = new Date(); // usa java.util.Date
+    }
+
+    @PreUpdate
+    public void asignarFechaFin() {
+        this.fechaFin = new Date();
+    }
 }
+
