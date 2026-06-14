@@ -40,4 +40,14 @@ public class SesionEvaluacion {
     @ListProperties("pregunta, opcionElegida")
     private List<RespuestaSesion> respuestas = new ArrayList<>();
 
+    @PrePersist
+    private void registrarFechaInicio() {
+        this.fechaInicio = LocalDateTime.now();
+    }
+
+    public void agregarRespuesta(RespuestaSesion respuesta) {
+        respuestas.add(respuesta);
+        respuesta.setSesion(this);
+    }
+
 }
