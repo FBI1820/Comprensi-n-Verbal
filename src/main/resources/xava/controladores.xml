@@ -4,19 +4,22 @@
 <controladores>
 
     <controlador nombre="SesionEvaluacionController">
-
         <hereda-de controlador="Typical"/>
-
         <accion nombre="iniciarSesion"
                 clase="ni.edu.uam.ComprensionVerbalG6.acciones.IniciarSesionAction"
                 modo="detail"
                 icono="play-circle" />
-
         <accion nombre="finalizarSesion"
                 clase="ni.edu.uam.ComprensionVerbalG6.acciones.FinalizarSesionAction"
                 modo="detail"
                 icono="stop-circle" />
+    </controlador>
 
+    <controlador nombre="Resultado">
+        <accion nombre="exportarPDF"
+                clase="ni.edu.uam.ComprensionVerbalG6.actions.ExportarResultadoPDFAction"
+                modo="detail"
+                icono="file-pdf" />
     </controlador>
 
 </controladores>

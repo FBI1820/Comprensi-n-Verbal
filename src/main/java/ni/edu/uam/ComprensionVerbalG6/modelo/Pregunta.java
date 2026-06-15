@@ -12,6 +12,7 @@ import java.util.*;
 @Entity
 @Table(name = "pregunta")
 @Tab(properties = "numero, textoPrincipal")
+@View(members="numero, textoPrincipal, opciones")
 public class Pregunta {
 
     @Id
