@@ -25,7 +25,8 @@ public class Test {
     @Required
     private int tiempoLimiteMinutos; // Ej: 15
 
-    @OneToMany(mappedBy = "test", cascade = CascadeType.ALL)
-    @ListProperties("numero, textoPrincipal")
+    @OneToMany(mappedBy="test", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
     private List<Pregunta> preguntas = new ArrayList<>();
+
+
 }
