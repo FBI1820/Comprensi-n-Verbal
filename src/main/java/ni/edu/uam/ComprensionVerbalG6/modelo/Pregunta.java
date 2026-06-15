@@ -15,6 +15,7 @@ public class Pregunta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Hidden
     private Long id;
 
     @Column(name = "numero", nullable = false)

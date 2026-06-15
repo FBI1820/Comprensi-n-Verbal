@@ -21,6 +21,7 @@ public class RespuestaSesion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Hidden
     private Long id;
 
     @ManyToOne
