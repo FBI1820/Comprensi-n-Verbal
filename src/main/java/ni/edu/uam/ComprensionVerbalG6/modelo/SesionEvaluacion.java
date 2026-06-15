@@ -37,7 +37,7 @@ public class SesionEvaluacion {
     private Integer puntajeTotal;
 
     @OneToMany(mappedBy = "sesion", cascade = CascadeType.ALL)
-    @ListProperties("pregunta, opcionElegida")
+    @ListProperties("pregunta.numero, pregunta.textoPrincipal, opcionElegida.letra")
     private List<RespuestaSesion> respuestas = new ArrayList<>();
 
     @PrePersist
