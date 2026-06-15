@@ -15,6 +15,7 @@ public class Pregunta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Hidden
     private Long id;
 
     @Column(name = "numero", nullable = false)
@@ -32,6 +33,6 @@ public class Pregunta {
     private String textoPrincipal;
 
     @OneToMany(mappedBy = "pregunta", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @ListProperties("letra, texto, esCorrecta")
+    @ListProperties("letra, texto")
     private List<Opcion> opciones = new ArrayList<>();
 }
