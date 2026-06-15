@@ -1,9 +1,12 @@
 package ni.edu.uam.ComprensionVerbalG6.modelo;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.openxava.annotations.*;
 import javax.persistence.*;
 import java.util.*;
-
+@Getter
+@Setter
 @Entity
 @Table(name = "test")
 @Tab(properties = "tipoTest, tiempoLimiteMinutos")
@@ -25,17 +28,4 @@ public class Test {
     @OneToMany(mappedBy = "test", cascade = CascadeType.ALL)
     @ListProperties("numero, textoPrincipal")
     private List<Pregunta> preguntas = new ArrayList<>();
-
-    // Getters y Setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
-
-    public String getTipoTest() { return tipoTest; }
-    public void setTipoTest(String tipoTest) { this.tipoTest = tipoTest; }
-
-    public int getTiempoLimiteMinutos() { return tiempoLimiteMinutos; }
-    public void setTiempoLimiteMinutos(int tiempoLimiteMinutos) { this.tiempoLimiteMinutos = tiempoLimiteMinutos; }
-
-    public List<Pregunta> getPreguntas() { return preguntas; }
-    public void setPreguntas(List<Pregunta> preguntas) { this.preguntas = preguntas; }
 }
