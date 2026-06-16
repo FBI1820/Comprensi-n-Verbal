@@ -34,7 +34,6 @@ public class Opcion {
 
     @ManyToOne
     @JoinColumn(name = "pregunta_id", nullable = false)
-    @NoCreate @NoModify @NoSearch
     private Pregunta pregunta;
 
 }
