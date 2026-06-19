@@ -19,6 +19,7 @@ public class Opcion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Hidden
+    @ReadOnly
     private Long id;
 
     @Column(name = "letra", nullable = false, length = 1)

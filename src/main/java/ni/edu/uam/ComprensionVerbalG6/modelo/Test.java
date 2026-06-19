@@ -15,6 +15,7 @@ public class Test {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Hidden
+    @ReadOnly
     private Long id;
 
     @Column(name = "tipo_test", length = 100, nullable = false)
