@@ -25,10 +25,12 @@
 		<class>com.openxava.naviox.model.LDAPConfiguration</class>
 
 		<!-- TUS clases -->
+		<class>ni.edu.uam.ComprensionVerbalG6.modelo.Test</class>
 		<class>ni.edu.uam.ComprensionVerbalG6.modelo.Pregunta</class>
 		<class>ni.edu.uam.ComprensionVerbalG6.modelo.Opcion</class>
 		<class>ni.edu.uam.ComprensionVerbalG6.modelo.SesionEvaluacion</class>
 		<class>ni.edu.uam.ComprensionVerbalG6.modelo.RespuestaSesion</class>
+
 
 		<properties>
 			<!-- Conexión directa a PostgreSQL -->
@@ -60,7 +62,11 @@
 		<class>com.openxava.naviox.model.User</class>
 		<class>com.openxava.naviox.model.LDAPConfiguration</class>
 		<properties>
-			<property name="hibernate.connection.url" value="jdbc:hsqldb:hsql://localhost:1666"/>
+			<property name="hibernate.archive.autodetection" value="class"/>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+
+
+
 		</properties>
 	</persistence-unit>
 
