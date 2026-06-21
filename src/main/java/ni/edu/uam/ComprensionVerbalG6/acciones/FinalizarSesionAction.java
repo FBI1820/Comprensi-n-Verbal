@@ -11,10 +11,8 @@ public class FinalizarSesionAction extends ViewBaseAction {
 
         int puntaje = PuntajeCalculator.calcular(sesion);
         sesion.setPuntajeTotal(puntaje);
-        sesion.setFechaFin(new java.util.Date());
+        sesion.setFechaFin(java.time.LocalDateTime.now());
 
-
-
-        addMessage("Sesi?n finalizada. Puntaje obtenido: " + puntaje + " de 30");
+        addMessage("Sesión finalizada. Puntaje obtenido: " + puntaje + " de 30");
     }
 }

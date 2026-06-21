@@ -12,19 +12,14 @@ import java.util.*;
 @Entity
 @Table(name = "pregunta")
 @Tab(properties = "numero, textoPrincipal")
-@View(members="numero, textoPrincipal, opciones")
 public class Pregunta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "numero", nullable = false, unique = true)
+    @Column(name = "numero", nullable = false)
     private int numero;
-
-    @ManyToOne
-    @JoinColumn(name="test_id")  // nombre de la columna en la tabla Pregunta
-    private Test test;
 
     @Column(name = "texto_principal", nullable = false, length = 600)
     @TextArea
