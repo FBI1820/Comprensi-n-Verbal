@@ -21,6 +21,8 @@ public class RespuestaSesion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Hidden
+    @ReadOnly
     private Long id;
 
     @ManyToOne
@@ -36,7 +38,7 @@ public class RespuestaSesion {
 
     @ManyToOne
     @JoinColumn(name = "opcion_id")
-    @DescriptionsList(descriptionProperties = "letra, texto")
+    @DescriptionsList(descriptionProperties = "letra, texto", depends = "this.pregunta", condition = "${pregunta.id} = ?")
     private Opcion opcionElegida;
 
 }

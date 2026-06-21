@@ -18,6 +18,8 @@ public class Opcion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Hidden
+    @ReadOnly
     private Long id;
 
     @Column(name = "letra", nullable = false, length = 1)
@@ -33,7 +35,6 @@ public class Opcion {
 
     @ManyToOne
     @JoinColumn(name = "pregunta_id", nullable = false)
-    @NoCreate @NoModify @NoSearch
     private Pregunta pregunta;
 
 }
