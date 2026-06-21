@@ -42,18 +42,4 @@ public class SesionEvaluacion {
     @ListProperties("pregunta.numero, pregunta.textoPrincipal, opcionElegida.letra, opcionElegida.texto")
     private List<RespuestaSesion> respuestas = new ArrayList<>();
 
-    @PrePersist
-    private void registrarFechaInicio() {
-        this.fechaInicio = LocalDateTime.now();
-    }
-
-    public void registrarFechaFin() {
-        this.fechaFin = LocalDateTime.now();
-    }
-
-    public void agregarRespuesta(RespuestaSesion respuesta) {
-        respuestas.add(respuesta);
-        respuesta.setSesion(this);
-    }
-
 }

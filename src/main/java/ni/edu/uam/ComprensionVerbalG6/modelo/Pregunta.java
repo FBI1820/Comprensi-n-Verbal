@@ -1,5 +1,6 @@
 package ni.edu.uam.ComprensionVerbalG6.modelo;
 
+
 import lombok.Getter;
 import lombok.Setter;
 import org.openxava.annotations.*;
@@ -10,7 +11,7 @@ import java.util.*;
 @Setter
 @Entity
 @Table(name = "pregunta")
-@Tab(properties = "numero, test.tipoTest, textoPrincipal")
+@Tab(properties = "numero, textoPrincipal")
 public class Pregunta {
 
     @Id
@@ -22,11 +23,6 @@ public class Pregunta {
     @Column(name = "numero", nullable = false)
     private int numero;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "test_id", nullable = false)
-    @DescriptionsList(descriptionProperties = "tipoTest")
-    private Test test;
-
     @Column(name = "texto_principal", nullable = false, length = 600)
     @TextArea
     @DisplaySize(70)
@@ -35,5 +31,8 @@ public class Pregunta {
 
     @OneToMany(mappedBy = "pregunta", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @ListProperties("letra, texto, esCorrecta")
+    @EditOnly
     private List<Opcion> opciones = new ArrayList<>();
+
+
 }

@@ -1,15 +1,28 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<!DOCTYPE aplicacion SYSTEM "dtds/aplicacion.dtd">
-
 <aplicacion nombre="ComprensionVerbalG6">
-
-	<modulo-defecto>
-		<controlador nombre="Typical"/>
-	</modulo-defecto>
 
 	<modulo nombre="SesionEvaluacion">
 		<modelo nombre="SesionEvaluacion"/>
 		<controlador nombre="SesionEvaluacionController"/>
-	</modulo>
+		<controlador nombre="MisReportesPDF"/> </modulo>
+
+	<modulo nombre="Pregunta">
+		<modelo nombre="Pregunta"/>
+		<controlador nombre="Typical"/>
+		<controlador nombre="MisReportesPDF"/> </modulo>
+
+	<modulo nombre="Test">
+		<modelo nombre="Test"/>
+		<controlador nombre="Typical"/>
+		<controlador nombre="MisReportesPDF"/> </modulo>
+
+	<modulo nombre="Opcion">
+		<modelo nombre="Opcion"/>
+		<controlador nombre="Typical"/>
+		<controlador nombre="MisReportesPDF"/> </modulo>
+
+	<modulo nombre="RespuestaSesion">
+		<modelo nombre="RespuestaSesion"/>
+		<controlador nombre="Typical"/>
+		<controlador nombre="MisReportesPDF"/> </modulo>
 
 </aplicacion>
