@@ -3,4 +3,11 @@
 
 <controladores>
 
+    <controlador nombre="MisReportesPDF">
+        <accion nombre="descargarPdf"
+                clase="ni.edu.uam.ComprensionVerbalG6.acciones.ExportarResultadoPDF"
+                modo="list"
+                icono="download" />
+    </controlador>
+
 </controladores>

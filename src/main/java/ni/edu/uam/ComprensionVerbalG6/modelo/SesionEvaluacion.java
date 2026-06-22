@@ -47,13 +47,4 @@ public class SesionEvaluacion {
         this.fechaInicio = LocalDateTime.now();
     }
 
-    public void registrarFechaFin() {
-        this.fechaFin = LocalDateTime.now();
-    }
-
-    public void agregarRespuesta(RespuestaSesion respuesta) {
-        respuestas.add(respuesta);
-        respuesta.setSesion(this);
-    }
-
 }

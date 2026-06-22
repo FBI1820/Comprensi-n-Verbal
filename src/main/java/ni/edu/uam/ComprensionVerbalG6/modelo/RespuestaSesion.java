@@ -27,18 +27,20 @@ public class RespuestaSesion {
 
     @ManyToOne
     @JoinColumn(name = "sesion_id", nullable = false)
-    @NoCreate @NoModify @NoSearch
     private SesionEvaluacion sesion;
 
     @ManyToOne
     @JoinColumn(name = "pregunta_id", nullable = false)
-    @NoCreate @NoModify
-    @DescriptionsList(descriptionProperties = "numero, textoPrincipal")
     private Pregunta pregunta;
 
     @ManyToOne
     @JoinColumn(name = "opcion_id")
-    @DescriptionsList(descriptionProperties = "letra, texto", depends = "this.pregunta", condition = "${pregunta.id} = ?")
+    @DescriptionsList(
+            descriptionProperties = "letra, texto",
+            depends = "this.pregunta",
+            condition = "${pregunta.id} = ?"
+    )
+    @NoCreate @NoModify
     private Opcion opcionElegida;
 
 }

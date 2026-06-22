@@ -8,7 +8,6 @@
 
 	<persistence-unit name="default">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-		<non-jta-data-source>java://comp/env/jdbc/ComprensionVerbalG6DS</non-jta-data-source>
 
 		<!-- Clases de OpenXava (NO tocar) -->
 		<class>org.openxava.session.GalleryImage</class>
@@ -26,15 +25,23 @@
 		<class>com.openxava.naviox.model.LDAPConfiguration</class>
 
 		<!-- TUS clases -->
+		<class>ni.edu.uam.ComprensionVerbalG6.modelo.Test</class>
 		<class>ni.edu.uam.ComprensionVerbalG6.modelo.Pregunta</class>
 		<class>ni.edu.uam.ComprensionVerbalG6.modelo.Opcion</class>
 		<class>ni.edu.uam.ComprensionVerbalG6.modelo.SesionEvaluacion</class>
 		<class>ni.edu.uam.ComprensionVerbalG6.modelo.RespuestaSesion</class>
 
+
 		<properties>
-			<property name="javax.persistence.schema-generation.database.action" value="update"/>
-			<!-- PostgreSQL -->
+			<!-- Conexión directa a PostgreSQL -->
+			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/bfa_compresion_verbal"/>
+			<property name="javax.persistence.jdbc.user" value="postgres"/>
+			<property name="javax.persistence.jdbc.password" value="12345"/>
+
+			<!-- Configuración de Hibernate -->
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+			<property name="hibernate.hbm2ddl.auto" value="update"/>
 			<property name="hibernate.show_sql" value="true"/>
 		</properties>
 	</persistence-unit>
@@ -55,7 +62,11 @@
 		<class>com.openxava.naviox.model.User</class>
 		<class>com.openxava.naviox.model.LDAPConfiguration</class>
 		<properties>
-			<property name="hibernate.connection.url" value="jdbc:hsqldb:hsql://localhost:1666"/>
+			<property name="hibernate.archive.autodetection" value="class"/>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+
+
+
 		</properties>
 	</persistence-unit>
 
