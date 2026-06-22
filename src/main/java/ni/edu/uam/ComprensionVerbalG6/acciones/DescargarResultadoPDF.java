@@ -17,7 +17,7 @@ public class DescargarResultadoPDF extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // se obtiene el nombre del m骴ulo de openxava para identificar la vista de origen
+        // se obtiene el nombre del m贸dulo de openxava para identificar la vista de origen
         String moduloActual = request.getParameter("module");
 
         response.setContentType("application/pdf");
@@ -32,25 +32,25 @@ public class DescargarResultadoPDF extends HttpServlet {
             Font fontHeaderTabla = FontFactory.getFont(FontFactory.HELVETICA, 11, Font.BOLD, java.awt.Color.WHITE);
             Font fontCuerpoTabla = FontFactory.getFont(FontFactory.HELVETICA, 10, Font.NORMAL, java.awt.Color.BLACK);
 
-            // validaci髇 para renderizar el reporte correspondiente al m骴ulo activo
+            // validaci贸n para renderizar el reporte correspondiente al m贸dulo activo
             if ("Pregunta".equals(moduloActual)) {
                 response.setHeader("Content-Disposition", "attachment; filename=\"Reporte_Preguntas.pdf\"");
 
                 Paragraph titulo = new Paragraph("Reporte de Banco de Preguntas", fontTitulo);
                 titulo.setAlignment(Element.ALIGN_CENTER);
                 document.add(titulo);
-
-                // estructurar la tabla espec韋ica con los campos de las preguntas (Enunciado, Opciones, etc.)
+                
+                // estructurar la tabla espec铆fica con los campos de las preguntas (Enunciado, Opciones, etc.)
 
             } else {
-                //caso por defecto: generaci髇 del reporte est醤dar para las sesiones de evaluaci髇
+                //caso por defecto: generaci贸n del reporte est谩ndar para las sesiones de evaluaci贸n
                 response.setHeader("Content-Disposition", "attachment; filename=\"Reporte_Sesiones_Evaluacion.pdf\"");
 
                 Paragraph titulo = new Paragraph("Reporte General de Sesiones", fontTitulo);
                 titulo.setAlignment(Element.ALIGN_LEFT);
                 document.add(titulo);
 
-                Paragraph subtitulo = new Paragraph("Generado autom醫icamente por el sistema de Comprensi髇 Verbal G6", fontSubtitulo);
+                Paragraph subtitulo = new Paragraph("Generado autom谩ticamente por el sistema de Comprensi贸n Verbal G6", fontSubtitulo);
                 document.add(subtitulo);
                 document.add(Chunk.NEWLINE);
 
@@ -74,14 +74,14 @@ public class DescargarResultadoPDF extends HttpServlet {
                 if (sesiones != null && !sesiones.isEmpty()) {
                     for (SesionEvaluacion sesion : sesiones) {
                         tabla.addCell(new PdfPCell(new Paragraph(String.valueOf(sesion.getId()), fontCuerpoTabla)));
-
+                        
                         // se utiliza la propiedad directa mapeada en la entidad de sesiones
                         String nombre = (sesion.getNombreEvaluado() != null) ? sesion.getNombreEvaluado() : "No asignado";
                         tabla.addCell(new PdfPCell(new Paragraph(nombre, fontCuerpoTabla)));
-
+                        
                         String fecha = (sesion.getFechaInicio() != null) ? sesion.getFechaInicio().toString() : "S/F";
                         tabla.addCell(new PdfPCell(new Paragraph(fecha, fontCuerpoTabla)));
-
+                        
                         String puntaje = (sesion.getPuntajeTotal() != null) ? String.valueOf(sesion.getPuntajeTotal()) : "0";
                         tabla.addCell(new PdfPCell(new Paragraph(puntaje, fontCuerpoTabla)));
                     }
