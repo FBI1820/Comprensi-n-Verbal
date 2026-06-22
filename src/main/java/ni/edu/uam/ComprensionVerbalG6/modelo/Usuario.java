@@ -26,7 +26,7 @@ public abstract class Usuario {
     private String email;
 
     @Stereotype("PASSWORD")
-    @Column(length = 32)
+    @Column(length = 64)
     private String password;
 
     @PrePersist
