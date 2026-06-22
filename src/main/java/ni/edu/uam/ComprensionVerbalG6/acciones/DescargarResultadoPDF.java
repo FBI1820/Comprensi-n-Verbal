@@ -14,7 +14,6 @@ public class DescargarResultadoPDF extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // 1. CAPTURAMOS DESDE QUÉ PANTALLA LE DIERON CLIC
         String moduloActual = request.getParameter("module");
 
         response.setContentType("application/pdf");
@@ -26,7 +25,6 @@ public class DescargarResultadoPDF extends HttpServlet {
 
             Font fuenteTitulo = FontFactory.getFont(FontFactory.HELVETICA, 18, Font.BOLD);
 
-            // 2. CAMBIAMOS EL CONTENIDO SEGÚN LA PANTALLA
             if ("Pregunta".equals(moduloActual)) {
                 response.setHeader("Content-Disposition", "attachment; filename=\"Reporte_Preguntas.pdf\"");
 
@@ -34,10 +32,7 @@ public class DescargarResultadoPDF extends HttpServlet {
                 titulo.setAlignment(Element.ALIGN_CENTER);
                 document.add(titulo);
 
-                // Aquí armarías tu tabla con columnas para Enunciado, Respuesta, etc.
-
             } else {
-                // POR DEFECTO: Tu reporte de Sesiones de Evaluación que ya tienes hecho
                 response.setHeader("Content-Disposition", "attachment; filename=\"Reporte_General_Sesiones.pdf\"");
 
                 Paragraph titulo = new Paragraph("Reporte General - Sesiones de Evaluacion", fuenteTitulo);

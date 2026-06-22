@@ -2,7 +2,6 @@ package ni.edu.uam.ComprensionVerbalG6.acciones;
 
 import org.openxava.actions.*;
 
-// NOTA: Extiende de BaseAction, NO de JasperReportBaseAction
 public class ExportarResultadoPDF extends BaseAction implements IForwardAction {
 
     @Override
