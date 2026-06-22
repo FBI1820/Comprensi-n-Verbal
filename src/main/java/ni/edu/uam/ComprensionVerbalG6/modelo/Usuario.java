@@ -32,9 +32,11 @@ public abstract class Usuario {
     @PrePersist
     @PreUpdate
     private void encriptarPassword() {
-        if (this.password != null && this.password.length() != 32) {
+        // SHA-256 siempre genera una cadena de exactamente 64 caracteres
+        if (this.password != null && this.password.length() != 64) {
 
-            this.password = org.apache.commons.codec.digest.DigestUtils.md5Hex(this.password);
+            this.password = org.apache.commons.codec.digest.DigestUtils.sha256Hex(this.password);
+
         }
     }
 
