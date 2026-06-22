@@ -2,7 +2,7 @@
 
 	<modulo nombre="SesionEvaluacion">
 		<modelo nombre="SesionEvaluacion"/>
-		<controlador nombre="SesionEvaluacionController"/>
+		<controlador nombre="Typical"/>
 		<controlador nombre="MisReportesPDF"/> </modulo>
 
 	<modulo nombre="Pregunta">
