@@ -2,7 +2,7 @@
 
 	<modulo nombre="SesionEvaluacion">
 		<modelo nombre="SesionEvaluacion"/>
-		<controlador nombre="Typical"/>
+		<controlador nombre="ExtendedPrint"/>
 		<controlador nombre="MisReportesPDF"/> </modulo>
 
 	<modulo nombre="Pregunta">
@@ -22,7 +22,7 @@
 
 	<modulo nombre="RespuestaSesion">
 		<modelo nombre="RespuestaSesion"/>
-		<controlador nombre="Typical"/>
+		<controlador nombre="ExtendedPrint"/>
 		<controlador nombre="MisReportesPDF"/> </modulo>
 
 </aplicacion>
