@@ -9,7 +9,9 @@ import java.util.*;
 @Getter
 @Setter
 @Entity
-@Table(name = "pregunta")
+@Table(name = "pregunta", uniqueConstraints = {
+        @UniqueConstraint(name = "UK_Pregunta_Numero_Test", columnNames = {"numero", "test_id"})
+})
 @Tab(properties = "numero, test.tipoTest, textoPrincipal")
 public class Pregunta {
 
