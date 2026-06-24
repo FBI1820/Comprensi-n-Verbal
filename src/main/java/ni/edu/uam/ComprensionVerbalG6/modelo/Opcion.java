@@ -13,7 +13,9 @@ import org.openxava.annotations.*;
 @Getter
 @Setter
 @Entity
-@Table(name = "opcion")
+@Table(name = "opcion", uniqueConstraints = {
+        @UniqueConstraint(name = "UK_Opcion_Letra_Pregunta", columnNames = {"letra", "pregunta_id"})
+})
 public class Opcion {
 
     @Id
@@ -22,6 +24,7 @@ public class Opcion {
     private Long id;
 
     @Column(name = "letra", nullable = false, length = 1)
+
     private String letra;
 
     @Column(name = "texto", nullable = false, length = 500)
@@ -35,5 +38,11 @@ public class Opcion {
     @ManyToOne
     @JoinColumn(name = "pregunta_id", nullable = false)
     private Pregunta pregunta;
+
+    @PrePersist @PreUpdate
+    private void convertirMayuscula() {
+        if (this.letra == null || this.pregunta == null) return;
+        this.letra = this.letra.toUpperCase().trim();
+    }
 
 }
