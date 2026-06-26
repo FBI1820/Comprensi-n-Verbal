@@ -1,18 +1,22 @@
 package ni.edu.uam.ComprensionVerbalG6.acciones;
 
+import org.apache.commons.logging.*;
 import org.openxava.actions.*;
 
-// NOTA: Extiende de BaseAction, NO de JasperReportBaseAction
 public class ExportarResultadoPDF extends BaseAction implements IForwardAction {
+
+    private static final Log log = LogFactory.getLog(ExportarResultadoPDF.class);
 
     @Override
     public void execute() throws Exception {
-        System.out.println("====== Redirigiendo al servlet del reporte PDF ======");
+        log.info("ejecutando redirección automatizada hacia el servlet de reportes pdf");
     }
 
     @Override
     public String getForwardURI() {
-        return "/servlets/descargarPdf";
+        // se recupera el nombre del módulo activo en openxava para enviarlo como parámetro al servlet
+        String moduloActivo = getManager().getModuleName();
+        return "/servlets/descargarPdf?module=" + moduloActivo;
     }
 
     @Override

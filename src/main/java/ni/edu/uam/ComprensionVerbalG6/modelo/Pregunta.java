@@ -9,13 +9,16 @@ import java.util.*;
 @Getter
 @Setter
 @Entity
-@Table(name = "pregunta")
+@Table(name = "pregunta", uniqueConstraints = {
+        @UniqueConstraint(name = "UK_Pregunta_Numero_Test", columnNames = {"numero", "test_id"})
+})
 @Tab(properties = "numero, test.tipoTest, textoPrincipal")
 public class Pregunta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Hidden
+    @ReadOnly
     private Long id;
 
     @Column(name = "numero", nullable = false)
@@ -35,7 +38,4 @@ public class Pregunta {
     @OneToMany(mappedBy = "pregunta", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @ListProperties("letra, texto, esCorrecta")
     private List<Opcion> opciones = new ArrayList<>();
-
-
 }
-

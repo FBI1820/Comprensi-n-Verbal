@@ -1,5 +1,6 @@
 package ni.edu.uam.ComprensionVerbalG6.modelo;
 
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,10 +11,10 @@ import javax.persistence.Table;
 @Getter
 @Setter
 @Entity
-@Table(name = "participante")
-public class Participante extends Usuario {
+@Table(name = "evaluador")
+public class Evaluador extends Usuario {
 
-    @Column(length = 50, name = "ocupacion")
-    private String ocupacion;
+    @Column(length = 100, name = "especialidad")
+    private String especialidad;
 
 }

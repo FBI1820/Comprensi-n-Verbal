@@ -3,6 +3,7 @@ package ni.edu.uam.ComprensionVerbalG6.modelo;
 import lombok.Getter;
 import lombok.Setter;
 import org.openxava.annotations.ListProperties;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -18,30 +19,32 @@ public class SesionEvaluacion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Hidden
+    @ReadOnly
     private Long id;
 
-    // Relación con el Participante (Paciente)
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "participante_id")
-    @DescriptionsList(descriptionProperties = "nombre") // Para que OpenXava muestre un combo con el nombre
-    private Participante participante;
-
-    // Relación con el Test ejecutado
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "test_id")
-    @DescriptionsList(descriptionProperties = "nombre")
-    private Test test;
+    @Column(name = "nombre_evaluado", nullable = false, length = 200)
+    private String nombreEvaluado;
 
     @Column(name = "fecha_inicio")
+    @ReadOnly
     private LocalDateTime fechaInicio;
 
     @Column(name = "fecha_fin")
+    @ReadOnly
     private LocalDateTime fechaFin;
 
     @Column(name = "puntaje_total")
+    @ReadOnly
     private Integer puntajeTotal;
 
     @OneToMany(mappedBy = "sesion", cascade = CascadeType.ALL)
-    @ListProperties("pregunta.numero, pregunta.textoPrincipal, opcionElegida.letra")
+    @ListProperties("pregunta.numero, pregunta.textoPrincipal, opcionElegida.letra, opcionElegida.texto")
     private List<RespuestaSesion> respuestas = new ArrayList<>();
+
+    @PrePersist
+    private void registrarFechaInicio() {
+        this.fechaInicio = LocalDateTime.now();
+    }
+
 }

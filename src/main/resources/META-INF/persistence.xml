@@ -30,6 +30,8 @@
 		<class>ni.edu.uam.ComprensionVerbalG6.modelo.Opcion</class>
 		<class>ni.edu.uam.ComprensionVerbalG6.modelo.SesionEvaluacion</class>
 		<class>ni.edu.uam.ComprensionVerbalG6.modelo.RespuestaSesion</class>
+		<class>ni.edu.uam.ComprensionVerbalG6.modelo.Evaluador</class>
+		<class>ni.edu.uam.ComprensionVerbalG6.modelo.Participante</class>
 
 
 		<properties>

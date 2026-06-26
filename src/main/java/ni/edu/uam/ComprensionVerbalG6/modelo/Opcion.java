@@ -13,14 +13,24 @@ import org.openxava.annotations.*;
 @Getter
 @Setter
 @Entity
-@Table(name = "opcion")
+@Table(name = "opcion",
+        uniqueConstraints = {
+                @UniqueConstraint(name = "UK_Opcion_Letra_Pregunta", columnNames = {"letra", "pregunta_id"})
+        },
+        indexes = {
+                @Index(name = "IDX_Opcion_Correcta_Unica", columnList = "pregunta_id", unique = true)
+        }
+)
 public class Opcion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Hidden
+    @ReadOnly
     private Long id;
 
     @Column(name = "letra", nullable = false, length = 1)
+
     private String letra;
 
     @Column(name = "texto", nullable = false, length = 500)
@@ -33,7 +43,21 @@ public class Opcion {
 
     @ManyToOne
     @JoinColumn(name = "pregunta_id", nullable = false)
-    @NoCreate @NoModify @NoSearch
     private Pregunta pregunta;
+
+    @PrePersist @PreUpdate
+    //convierte a mayuscula la letra y valida si ya hay opciones con es correcta para la misma pregunta
+    private void ValidarOpcion() {
+        if (this.letra == null || this.pregunta == null) return;
+        this.letra = this.letra.toUpperCase().trim();
+
+        if (this.esCorrecta) {
+            for (Opcion opcion : this.pregunta.getOpciones()) {
+                if (opcion.isEsCorrecta() && !opcion.equals(this)) {
+                    throw new RuntimeException("Ya existe una opción correcta para esta pregunta.");
+                }
+            }
+        }
+    }
 
 }
