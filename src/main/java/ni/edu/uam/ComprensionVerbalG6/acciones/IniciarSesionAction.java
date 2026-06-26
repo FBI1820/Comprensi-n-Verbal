@@ -15,6 +15,6 @@ public class IniciarSesionAction extends SaveAction {
         }
 
         super.execute(); // Llama al Save normal de OpenXava
-        addMessage("Sesión iniciada correctamente para: " + sesion.getNombreEvaluado());
+        addMessage("Sesión iniciada correctamente para: " + (sesion.getParticipante() != null ? sesion.getParticipante().getNombre() : "Usuario"));
     }
 }
