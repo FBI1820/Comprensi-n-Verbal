@@ -1,4 +1,4 @@
-package ni.edu.uam.ComprensionVerbalG6.run;
+   package ni.edu.uam.ComprensionVerbalG6.run;
 
 import org.openxava.util.*;
 
@@ -11,4 +11,5 @@ public class ComprensionVerbalG6 {
 		// DBServer.start("ComprensionVerbalG6-db"); // COMENTADA, PostgreSQL
 		AppServer.run("ComprensionVerbalG6");
 	}
+
 }
