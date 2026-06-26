@@ -24,16 +24,15 @@ public class ParticipanteApiServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // Configurar Cabeceras CORS para la respuesta exitosa
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
         response.setHeader("Access-Control-Allow-Headers", "Content-Type");
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
 
-        // Leer el JSON que envía tu frontend de usuario
         StringBuilder sb = new StringBuilder();
         String linea;
+
         try (BufferedReader reader = request.getReader()) {
             while ((linea = reader.readLine()) != null) {
                 sb.append(linea);
@@ -43,10 +42,8 @@ public class ParticipanteApiServlet extends HttpServlet {
         try {
             String json = sb.toString();
 
-            // Instanciar Participante usando tu modelo POO
             Participante nuevoParticipante = new Participante();
 
-            // Mapeamos los datos extrayéndolos del JSON
             nuevoParticipante.setNombre(extraerValor(json, "nombreCompleto"));
             nuevoParticipante.setEmail(extraerValor(json, "email"));
             nuevoParticipante.setTipoDocumento(extraerValor(json, "tipoDocumento"));
@@ -57,39 +54,56 @@ public class ParticipanteApiServlet extends HttpServlet {
             nuevoParticipante.setPassword("participante123");
 
             String respuestasRaw = extraerValor(json, "respuestas");
+
             if (!respuestasRaw.isEmpty()) {
                 nuevoParticipante.setRespuestas(respuestasRaw);
             }
 
-            // Persistencia en Base de Datos integrada con OpenXava (PostgreSQL)
             XPersistence.getManager().persist(nuevoParticipante);
             XPersistence.commit();
 
             response.setStatus(HttpServletResponse.SC_CREATED);
-            response.getWriter().write("{\"status\": \"success\", \"message\": \"¡Datos guardados con éxito!\"}");
+            response.getWriter().write("{\"status\":\"success\",\"message\":\"Datos guardados con éxito\"}");
 
         } catch (Exception e) {
             XPersistence.rollback();
+
+            e.printStackTrace();
+
+            Throwable causa = e;
+            while (causa.getCause() != null) {
+                causa = causa.getCause();
+            }
+
+            String mensajeError = causa.getMessage();
+
+            if (mensajeError == null) {
+                mensajeError = "Error desconocido al guardar participante";
+            }
+
+            mensajeError = mensajeError.replace("\"", "'");
+
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-            response.getWriter().write("{\"status\": \"error\", \"message\": \"" + e.getMessage() + "\"}");
+
+            String jsonError = "{\"status\":\"error\",\"message\":\"" + mensajeError + "\"}";
+
+            response.getWriter().write(jsonError);
         }
     }
 
-    // 3. MÉTODO AUXILIAR PARA PARSEAR EL JSON
     private String extraerValor(String json, String llave) {
         try {
             String patron = "\"" + llave + "\":\"(.*?)\"";
             java.util.regex.Pattern p = java.util.regex.Pattern.compile(patron);
             java.util.regex.Matcher m = p.matcher(json);
+
             if (m.find()) {
                 return m.group(1);
             }
         } catch (Exception e) {
             return "";
         }
+
         return "";
-
-
     }
-
 }

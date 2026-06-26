@@ -23,6 +23,16 @@ public class SesionEvaluacion {
     @ReadOnly
     private Long id;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "participante_id")
+    @DescriptionsList(descriptionProperties = "nombre")
+    private Participante participante;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "test_id")
+    @DescriptionsList(descriptionProperties = "tipoTest")
+    private Test test;
+
     @Column(name = "nombre_evaluado", nullable = false, length = 200)
     private String nombreEvaluado;
 

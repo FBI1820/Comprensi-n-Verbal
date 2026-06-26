@@ -17,16 +17,14 @@ public abstract class Usuario {
     @Hidden
     private Long id;
 
-    @Column(length = 100, nullable = false)
-    @Required
+    @Column(length = 200)
     private String nombre;
 
-    @Column(length = 100, nullable = false)
-    @Required
+    @Column(length = 150)
     private String email;
 
     @Stereotype("PASSWORD")
-    @Column(length = 64)
+    @Column(length = 255)
     private String password;
 
     @PrePersist
