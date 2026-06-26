@@ -52,8 +52,9 @@ public class ParticipanteApiServlet extends HttpServlet {
             nuevoParticipante.setTipoDocumento(extraerValor(json, "tipoDocumento"));
             nuevoParticipante.setIdUnico(extraerValor(json, "idUnico"));
             nuevoParticipante.setFechaNacimiento(extraerValor(json, "fechaNacimiento"));
+            nuevoParticipante.setNivelEstudios(extraerValor(json, "nivelEstudios"));
             nuevoParticipante.setOcupacion(extraerValor(json, "ocupacion"));
-            nuevoParticipante.setPassword(null);
+            nuevoParticipante.setPassword("participante123");
 
             String respuestasRaw = extraerValor(json, "respuestas");
             if (!respuestasRaw.isEmpty()) {
@@ -87,5 +88,8 @@ public class ParticipanteApiServlet extends HttpServlet {
             return "";
         }
         return "";
+
+
     }
+
 }
