@@ -37,7 +37,7 @@
 		<properties>
 			<!-- Conexión directa a PostgreSQL -->
 			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
-			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/bfa_compresion_verbal"/>
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/bfa_compresion_verbal1"/>
 			<property name="javax.persistence.jdbc.user" value="postgres"/>
 			<property name="javax.persistence.jdbc.password" value="12345"/>
 
